@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if product %}
+    <a href="/main_category/{{ main_category_product.id }}/">{{ main_category_product.name }}</a> - <a href="/category/{{ category_product.id }}/">{{ category_product.name }}</a>
+    <h2>{{ product.name }} - {{ product.cost }} руб.</h2>
+    <p>Рэйтинг пользователей: {{ product.rating }}</p>
+    <div class="bd-example bd-example-tabs" role="tabpanel">
+      {% include '_product_nav_tabs.html' %}
+      <div class="tab-content" id="myTabContent">
+        {% include '_product_tab_content_description.html' %}
+        {% include '_product_tab_content_parameter.html' %}
+        <div class="tab-pane fade" id="costs" role="tabpanel" aria-labelledby="costs-tab" aria-expanded="false">
+          <p>Costs</p>
+        </div>
+        {% include '_product_tab_content_feedback.html' %}
+        <div class="tab-pane fade" id="overview" role="tabpanel" aria-labelledby="overview-tab" aria-expanded="false">
+          <p>overview</p>
+        </div>
+        <div class="tab-pane fade" id="discussion" role="tabpanel" aria-labelledby="discussion-tab" aria-expanded="false">
+          <p>discussion</p>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <h2>Запрошеный товар не найден</h2>
+  {% endif %}
+{% endblock %}
